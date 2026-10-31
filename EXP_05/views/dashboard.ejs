@@ -1,0 +1,6 @@
+<h2>Dashboard</h2>
+<p>Welcome, <%= username %></p>   <!-- escaped output (prevents XSS). Never use <%- %> for user data -->
+<form method="POST" action="/logout">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <button>Logout</button>
+</form>

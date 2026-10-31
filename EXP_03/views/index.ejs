@@ -1,0 +1,18 @@
+<link rel="stylesheet" href="/style.css">
+<h2>User Registration Form</h2>
+<form method="POST" action="/add">
+  <input name="name" placeholder="Enter Name" required>
+  <input name="email" placeholder="Enter Email" required>
+  <input name="password" placeholder="Enter Password" required>
+  <button>Register</button>
+</form>
+<h2>Registered Users</h2>
+<table>
+  <tr><th>ID</th><th>Name</th><th>Email</th><th>Password</th><th>Actions</th></tr>
+  <% users.forEach(u => { %>
+  <tr>
+    <td><%= u.id %></td><td><%= u.name %></td><td><%= u.email %></td><td><%= u.password %></td>
+    <td><a href="/edit/<%= u.id %>">Edit</a> | <a href="/delete/<%= u.id %>">Delete</a></td>
+  </tr>
+  <% }) %>
+</table>

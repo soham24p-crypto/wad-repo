@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>College Complaint Portal</title>
+  <style>
+    body { font-family: Arial; margin: 0; padding: 15px; background: #eef2f7; }
+    .card { background: white; padding: 12px; margin: 10px 0; border-radius: 8px; }
+    input, button { width: 100%; padding: 10px; margin: 4px 0; box-sizing: border-box; }
+    button { background: #2563eb; color: white; border: 0; border-radius: 6px; }
+  </style>
+</head>
+<body>
+  <h2>Complaint Dashboard</h2>
+  <button onclick="load()">Reload</button>
+  <div id="list">Loading...</div>
+  <h3>Report a Complaint</h3>
+  <input id="title" placeholder="Title"><input id="category" placeholder="Category (IT, General...)">
+  <button onclick="add()">Submit Complaint</button>
+  <script>
+    function load() {
+      fetch("/api/complaints").then(r => r.json()).then(data => {
+        document.getElementById("list").innerHTML = data.length === 0 ? "No records found" :
+          data.map(c => `<div class="card"><b>${c.title}</b><br>Category: ${c.category}<br>${c.status}</div>`).join("");
+      }).catch(() => document.getElementById("list").innerText = "Error: could not reach server");
+    }
+    function add() {
+      fetch("/api/complaints", { method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ title: title.value, category: category.value }) })
+        .then(r => r.json()).then(d => { alert(d.message); load(); });
+    }
+    load();
+  </script>
+</body>
+</html>

@@ -1,0 +1,4 @@
+body { font-family: Arial; margin: 30px; background: #f2f2f2; }
+input { padding: 5px; margin: 3px; }
+table { border-collapse: collapse; background: white; }
+th, td { border: 1px solid #999; padding: 6px 12px; }

@@ -1,0 +1,8 @@
+<h2>Create Account</h2>
+<form method="POST" action="/register">
+  <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+  <input name="username" placeholder="Username (3-50 chars)" required><br>
+  <input name="password" type="password" placeholder="Password (min 8 chars)" required><br>
+  <button>Register</button>
+</form>
+<a href="/login">Already have an account? Login</a>
